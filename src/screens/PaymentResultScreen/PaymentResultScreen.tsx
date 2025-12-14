@@ -21,20 +21,22 @@ export const PaymentResultScreen = () => {
 
   return (
     <View style={styles.container}>
-      <FastImage
-        source={IMAGES[isSuccess ? 'check' : 'cross']}
-        style={styles.iconContainer}
-        resizeMode={FastImage.resizeMode.contain}
-      />
-      <Text style={[styles.title, isSuccess ? styles.successTitle : styles.errorTitle]}>
-        {isSuccess ? 'Payment Successful' : 'Payment Failed'}
-      </Text>
-      <Text>
-        {isSuccess
-          ? 'Your payment has been processed successfully.'
-          : "We couldn't process your payment."}
-      </Text>
-      {!isSuccess && state.error && <Text style={styles.errorMessage}>{state.error}</Text>}
+      <View style={styles.content}>
+        <FastImage
+          source={IMAGES[isSuccess ? 'check' : 'cross']}
+          style={styles.iconContainer}
+          resizeMode={FastImage.resizeMode.contain}
+        />
+        <Text style={[styles.title, isSuccess ? styles.successTitle : styles.errorTitle]}>
+          {isSuccess ? 'Payment Successful' : 'Payment Failed'}
+        </Text>
+        <Text>
+          {isSuccess
+            ? 'Your payment has been processed successfully.'
+            : "We couldn't process your payment."}
+        </Text>
+        {!isSuccess && state.error && <Text style={styles.errorMessage}>{state.error}</Text>}
+      </View>
 
       <TouchableOpacity style={styles.button} onPress={handleTryAgain}>
         <Text style={styles.buttonText}>{isSuccess ? 'Make Another Payment' : 'Try Again'}</Text>

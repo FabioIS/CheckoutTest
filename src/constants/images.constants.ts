@@ -8,4 +8,5 @@ export const CARD_ICONS = {
 export const IMAGES = {
   check: require('../../assets/green-check.jpg'),
   cross: require('../../assets/red-cross.jpg'),
+  back: require('../../assets/arrow.jpg'),
 };

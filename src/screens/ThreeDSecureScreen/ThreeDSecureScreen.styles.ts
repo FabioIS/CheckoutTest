@@ -8,17 +8,28 @@ export const styles = StyleSheet.create({
   header: {
     height: 60,
     backgroundColor: '#fff',
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: 'row',
     paddingHorizontal: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backArrow: {
+    width: 24,
+    height: 24,
   },
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
     color: '#000',
+    flex: 1,
+    textAlign: 'center',
   },
   webView: {
     flex: 1,

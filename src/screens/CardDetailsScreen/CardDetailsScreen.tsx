@@ -32,8 +32,7 @@ export const CardDetailsScreen = () => {
     cvv: false,
   });
 
-  //TODO useMemo?
-  const cardScheme = detectCardScheme(cardNumber);
+  const cardScheme = useMemo(() => detectCardScheme(cardNumber), [cardNumber]);
 
   const handleCardNumberChange = useCallback(
     (text: string) => {
@@ -49,10 +48,8 @@ export const CardDetailsScreen = () => {
   );
 
   const handleExpiryDateChange = useCallback((text: string) => {
-    const cleaned = text.replace(/\D/g, '');
-
-    if (cleaned.length <= 6) {
-      const formatted = formatExpiryDate(cleaned);
+    if (text.length <= 7) {
+      const formatted = formatExpiryDate(text);
       setExpiryDate(formatted);
     }
   }, []);
