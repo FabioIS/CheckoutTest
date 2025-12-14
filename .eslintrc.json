@@ -1,0 +1,95 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "__DEV__": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": { "jsx": true },
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.js"],
+      "parserOptions": {
+        "project": null
+      },
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "plugins": [
+    "@babel",
+    "react",
+    "react-hooks",
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "quotes": [
+      "error",
+      "double",
+      { "avoidEscape": true, "allowTemplateLiterals": true }
+    ],
+
+    "react/jsx-key": "warn",
+
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "react/no-unescaped-entities": "off",
+    "react/prop-types": "warn",
+    "react/react-in-jsx-scope": "off",
+
+    "class-methods-use-this": "off",
+    "func-names": "off",
+    "object-shorthand": "off",
+    "prefer-const": "error",
+
+    "no-console": "error",
+    "no-else-return": "error",
+    "no-nested-ternary": "warn",
+    "no-undef": "off",
+    "no-underscore-dangle": "off",
+    "no-unneeded-ternary": "error",
+    "no-unused-vars": "off",
+    "no-use-before-define": "off",
+    "no-var": "error",
+
+    "@typescript-eslint/no-unused-vars": ["error", { "args": "after-used" }],
+    "@typescript-eslint/no-use-before-define": ["warn", { "variables": false }],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "disallowTypeAnnotations": false
+      }
+    ]
+  }
+}
