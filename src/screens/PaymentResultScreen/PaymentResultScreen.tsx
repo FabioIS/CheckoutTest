@@ -1,6 +1,6 @@
 import FastImage from '@d11/react-native-fast-image';
 import { useNavigation } from '@react-navigation/native';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { IMAGES } from '../../constants/images.constants';
 import { SCREEN_NAMES } from '../../constants/navigation.constants';
@@ -12,11 +12,11 @@ export const PaymentResultScreen = () => {
   const navigation = useNavigation();
   const { state, resetPayment } = usePaymentContext();
 
-  const isSuccess = state.status === PaymentStatus.success;
+  const isSuccess = useMemo(() => state.status === PaymentStatus.success, []);
 
   const handleTryAgain = useCallback(() => {
-    navigation.navigate(SCREEN_NAMES.CARD_DETAILS);
     resetPayment();
+    navigation.navigate(SCREEN_NAMES.CARD_DETAILS);
   }, [resetPayment, navigation]);
 
   return (

@@ -101,7 +101,6 @@ npm test
 
 ## Known Issues
 
-- This is a test implementation focused on 3D Secure payments
 - Error handling is simplified for demonstration
 - UI styling is basic and can be enhanced
 - As future implementation, users could log in and use its auth token to do the request instead of private key
