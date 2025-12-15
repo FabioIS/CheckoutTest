@@ -15,8 +15,8 @@ export const PaymentResultScreen = () => {
   const isSuccess = state.status === PaymentStatus.success;
 
   const handleTryAgain = useCallback(() => {
-    resetPayment();
     navigation.navigate(SCREEN_NAMES.CARD_DETAILS);
+    resetPayment();
   }, [resetPayment, navigation]);
 
   return (

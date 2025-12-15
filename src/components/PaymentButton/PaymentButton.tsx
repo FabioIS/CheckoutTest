@@ -1,5 +1,5 @@
 import { ActivityIndicator, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { styles } from './PaymentButton.style';
+import { styles } from './PaymentButton.styles';
 
 interface PaymentButtonProps extends Omit<TouchableOpacityProps, 'style'> {
   title: string;

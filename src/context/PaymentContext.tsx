@@ -15,7 +15,7 @@ enum PaymentActions {
 interface PaymentContextValue {
   state: PaymentState;
   initiatePayment: (
-    cardNyumber: string,
+    cardNumber: string,
     expiryMonth: string,
     expiryYear: string,
     cvv: string

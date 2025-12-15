@@ -7,7 +7,7 @@ import { PaymentButton } from '../../components/PaymentButton/PaymentButton';
 import { CARD_ICONS } from '../../constants/images.constants';
 import { SCREEN_NAMES } from '../../constants/navigation.constants';
 import { usePaymentContext } from '../../context/PaymentContext';
-import { PaymentStatus } from '../../types/payment.types';
+import { CardScheme, PaymentStatus } from '../../types/payment.types';
 import { formatCardNumber, formatExpiryDate, parseExpiryDate } from '../../utils/cardFormatting';
 import {
   detectCardScheme,
@@ -164,6 +164,7 @@ export const CardDetailsScreen = () => {
           error={cvvError}
           showError={touched.cvv}
           onBlur={() => setTouched((prev) => ({ ...prev, cvv: true }))}
+          maxLength={cardScheme === CardScheme.amex ? 4 : 3}
         />
 
         <PaymentButton
