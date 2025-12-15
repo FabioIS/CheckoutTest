@@ -8,7 +8,6 @@ export const formatCardNumber = (value: string, scheme: CardScheme): string => {
   const cleanValue = value.replace(/\s/g, '');
 
   if (scheme === CardScheme.amex) {
-    // Amex format: 3782 822463 10005
     return cleanValue.replace(/(\d{4})(\d{6})(\d{5})/, '$1 $2 $3').trim();
   }
 
@@ -22,7 +21,6 @@ export const formatExpiryDate = (value: string): string => {
     const month = parts[0].replace(/\D/g, '').slice(0, 2);
     const year = parts[1] ? parts[1].replace(/\D/g, '').slice(0, 4) : '';
 
-    console.log('🚀 ~ formatExpiryDate ~ month.length:', month.length);
     if (month.length < 2) {
       return month;
     }

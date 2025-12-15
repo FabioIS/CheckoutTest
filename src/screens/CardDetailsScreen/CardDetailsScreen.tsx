@@ -2,6 +2,7 @@ import FastImage from '@d11/react-native-fast-image';
 import { useNavigation } from '@react-navigation/native';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, Text, View } from 'react-native';
+import Config from 'react-native-config';
 import { CardInput } from '../../components/CardInput/CardInput';
 import { PaymentButton } from '../../components/PaymentButton/PaymentButton';
 import { CARD_ICONS } from '../../constants/images.constants';
@@ -31,21 +32,22 @@ export const CardDetailsScreen = () => {
     expiryDate: false,
     cvv: false,
   });
+  const aux = Config.CHECKOUT_SECRET_KEY;
+  console.log('🚀 ~ CardDetailsScreen ~ aux:', aux);
 
   const cardScheme = useMemo(() => detectCardScheme(cardNumber), [cardNumber]);
 
-  const handleCardNumberChange = useCallback(
-    (text: string) => {
-      const cleaned = text.replace(/\s/g, '');
-      const maxLength = getCardMaxLength(cardScheme);
+  const handleCardNumberChange = useCallback((text: string) => {
+    const cleaned = text.replace(/\s/g, '');
+    // Detect scheme from the input text directly, not from current state
+    const currentScheme = detectCardScheme(cleaned);
+    const maxLength = getCardMaxLength(currentScheme);
 
-      if (cleaned.length <= maxLength) {
-        const formatted = formatCardNumber(cleaned, cardScheme);
-        setCardNumber(formatted);
-      }
-    },
-    [cardScheme]
-  );
+    if (cleaned.length <= maxLength) {
+      const formatted = formatCardNumber(cleaned, currentScheme);
+      setCardNumber(formatted);
+    }
+  }, []);
 
   const handleExpiryDateChange = useCallback((text: string) => {
     if (text.length <= 7) {
@@ -76,7 +78,7 @@ export const CardDetailsScreen = () => {
   };
 
   const handlePay = useCallback(async () => {
-    if (!isFormValid) {
+    if (!isFormValid()) {
       setTouched({ cardNumber: true, expiryDate: true, cvv: true });
       return;
     }
@@ -87,7 +89,7 @@ export const CardDetailsScreen = () => {
     } catch (error) {
       Alert.alert('Payment Error', 'Failed to process payment. Please try again.');
     }
-  }, [isFormValid, cardNumber, expiryDate, cvv, initiatePayment]);
+  }, [cardNumber, expiryDate, cvv, initiatePayment]);
 
   useEffect(() => {
     if (state.status === 'pending-3ds') {
